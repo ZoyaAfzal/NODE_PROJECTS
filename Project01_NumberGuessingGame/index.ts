@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
 
 type ansType = {
@@ -16,7 +17,7 @@ async function startFunc(){
 
     ])
 
-console.log(answers.userGuess);
+//console.log(answers.userGuess);
 
 
 const{userGuess} = answers;

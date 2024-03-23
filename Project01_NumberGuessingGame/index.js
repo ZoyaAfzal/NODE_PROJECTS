@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
 async function startFunc() {
     const systemGeneratedNum = Math.floor(Math.random() * 10);
@@ -8,7 +9,7 @@ async function startFunc() {
             message: "Write your guess number and your number must be selected b/w 1 - 10:"
         }
     ]);
-    console.log(answers.userGuess);
+    //console.log(answers.userGuess);
     const { userGuess } = answers;
     console.log("yourGuess =", userGuess, "\nsystem'sGuess =", systemGeneratedNum);
     if (userGuess === systemGeneratedNum) {

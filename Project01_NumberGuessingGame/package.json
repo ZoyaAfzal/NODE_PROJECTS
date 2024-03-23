@@ -1,9 +1,10 @@
 {
-  "name": "project01_numberguessinggame",
+  "name": "zoyaafzal_numberguessinggame",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
+  "bin": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +16,7 @@
     "@types/node": "^20.11.25"
   },
   "dependencies": {
-    "inquirer": "^9.2.15"
+    "inquirer": "^9.2.15",
+    "zoyaafzal_numberguessinggame": "^1.0.0"
   }
 }
