@@ -1,0 +1,26 @@
+{
+  "name": "@zoyaafzal/project02_atm",
+  "version": "1.1.0",
+  "description": "atm_project",
+  "main": "index.js",
+  "type": "module",
+  "bin": "atm.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.30"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@zoyaafzal/project02_atm": "^1.1.0",
+    "inquirer": "^9.2.16"
+  }
+}
