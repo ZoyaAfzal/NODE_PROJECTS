@@ -44,7 +44,7 @@ const user = users.find(val => val.pin  ===  pinAnswer.pin)
 if(user){
     
     console.log(`You have entered correct Pin number, Welcome ${user.name}!`); 
-    atmOperations(user);
+    await atmOperations(user);
 
 } else {
     console.log("Invalid User pin");
@@ -59,7 +59,7 @@ const atmOperations = async(user: User) => {
         type:"list",
         name:"Select",
         message:"What Operation you want to perform?",
-        choices:["Withdraw", "BalanceCheck", "Deposit"],
+        choices:["Withdraw", "FastCash", "BalanceCheck", "Deposit"],
     })
 
 if(answer.Select === "Withdraw"){
@@ -75,12 +75,23 @@ if(amount.RupeeAmount === amount.choices){
     console.log(`Your remaining balance is: ${user.balance - amount.rupeeAmount}`);
 
 } else if(amount.rupeeAmount > "50000"){
-    console.log("Sorry! You cannot withdraw amount more than 40000!");
+    console.log("Sorry! You cannot withdraw amount more than 50000!");
 
 } else if(amount.rupeeAmount > user.balance){
     console.log("Sorry! you have Insufficient Balance for this transaction...");
 }
 
+}
+if(answer.Select === "FastCash"){
+    const fastCashWithdrawal = await inquirer.prompt({
+        type:"input",
+        name:"fastCash",
+        message:"Please enter the amount you want to withdraw faster:",
+    })
+if(fastCashWithdrawal.fastCash < "50000"){
+    console.log("Your amount has withdrawn successfully...")
+    console.log(`Your remaining balance is ${user.balance - fastCashWithdrawal.fastCash}`);
+}
 }
 
 if(answer.Select === "BalanceCheck"){
@@ -95,18 +106,35 @@ if(answer.Select === "Deposit"){
         message:"Please enter Deposit Amount:"
 
     })
-if(deposit.cash >= "5000"){
+if(deposit.cash >= "10000"){
     console.log(`Deposit Amount: ${deposit.cash} , Your amount has been deposited successfully...`);
+    console.log(`Your Current Balance is: ${user.balance + deposit.cash}`);
 } else {
-    console.log("You can't deposit less than 5000");
+    console.log("You can't deposit less than 10000");
 }
 }
 
 };
 
+async function startAgain() {
+    do {
+        await atmMachine(users);
+        var again = await inquirer.prompt({
+            type:"input",
+            name:"restart",
+            message:"Do you want to Continue? Press y or n:"
+        });
+    } while(
+        again.restart == "y" ||
+        again.restart == "Y" ||
+        again.restart == "yes" ||
+        again.restart == "YES"
+    )
+}
+
 
 
 console.log(users);
-atmMachine(users);
 
 
+startAgain();
