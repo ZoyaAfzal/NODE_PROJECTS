@@ -1,6 +1,6 @@
 {
-  "name": "@zoyaafzal/project-02_atm",
-  "version": "1.1.0",
+  "name": "@zoyaafzal/project_02_atm",
+  "version": "1.1.1",
   "description": "atm_project",
   "main": "index.js",
   "type": "module",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
+    "@zoyaafzal/project_02_atm": "^1.1.1",
     "@zoyaafzal/project02_atm": "^1.1.0",
     "inquirer": "^9.2.16"
   }

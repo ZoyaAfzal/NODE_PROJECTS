@@ -23,7 +23,6 @@ const atmMachine = async (users) => {
         name: "pin",
     });
     const user = users.find(val => val.pin === pinAnswer.pin);
-    //atmOperations(user);
     if (user) {
         console.log(`You have entered correct Pin number, Welcome ${user.name}!`);
         await atmOperations(user);
@@ -40,32 +39,34 @@ const atmOperations = async (user) => {
         choices: ["Withdraw", "FastCash", "BalanceCheck", "Deposit"],
     });
     if (answer.Select === "Withdraw") {
-        const amount = await inquirer.prompt({
-            type: "list",
-            name: "rupeeAmount",
-            message: "Enter Withdraw Amount:",
-            choices: ["10000", "20000", "30000", "40000", "50000"],
+        const withdrawAmount = await inquirer.prompt({
+            type: "input",
+            name: "withdraw",
+            message: "Please enter the amount you want to Withdraw:",
         });
-        if (amount.RupeeAmount === amount.choices) {
-            console.log(`Your withdrawal amount is: ${amount.rupeeAmount}`);
-            console.log(`Your remaining balance is: ${user.balance - amount.rupeeAmount}`);
+        if (withdrawAmount.withdraw < "50000") {
+            user.balance = user.balance - withdrawAmount.withdraw;
+            console.log("Your amount has withdrawn successfully...");
+            console.log(`Your remaining balance is ${user.balance}`);
         }
-        else if (amount.rupeeAmount > "50000") {
-            console.log("Sorry! You cannot withdraw amount more than 50000!");
-        }
-        else if (amount.rupeeAmount > user.balance) {
-            console.log("Sorry! you have Insufficient Balance for this transaction...");
+        else {
+            console.log("You cannot Withdraw more than 50000!");
         }
     }
     if (answer.Select === "FastCash") {
-        const fastCashWithdrawal = await inquirer.prompt({
-            type: "input",
+        const fastCashAmount = await inquirer.prompt({
+            type: "list",
             name: "fastCash",
-            message: "Please enter the amount you want to withdraw faster:",
+            message: "Enter FastCash Amount:",
+            choices: ["10000", "20000", "30000", "40000", "50000"],
         });
-        if (fastCashWithdrawal.fastCash < "50000") {
-            console.log("Your amount has withdrawn successfully...");
-            console.log(`Your remaining balance is ${user.balance - fastCashWithdrawal.fastCash}`);
+        if (fastCashAmount.fastCash < user.balance) {
+            user.balance = user.balance - fastCashAmount.fastCash;
+            console.log(`Your fastCashwithdrawal amount is: ${fastCashAmount.fastCash}`);
+            console.log(`Your remaining balance is: ${user.balance}`);
+        }
+        else {
+            console.log("Sorry! you have Insufficient Balance for this Transaction...");
         }
     }
     if (answer.Select === "BalanceCheck") {
@@ -78,8 +79,9 @@ const atmOperations = async (user) => {
             message: "Please enter Deposit Amount:"
         });
         if (deposit.cash >= "10000") {
+            user.balance = user.balance + deposit.cash;
             console.log(`Deposit Amount: ${deposit.cash} , Your amount has been deposited successfully...`);
-            console.log(`Your Current Balance is: ${user.balance + deposit.cash}`);
+            console.log(`Your Current Balance is: ${user.balance}`);
         }
         else {
             console.log("You can't deposit less than 10000");
