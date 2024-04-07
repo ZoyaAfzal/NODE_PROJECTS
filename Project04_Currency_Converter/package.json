@@ -1,0 +1,25 @@
+{
+  "name": "@zoyaafzal/project04_currency_converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "bin": "cc.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.12.5"
+  },
+  "dependencies": {
+    "@zoyaafzal/project04_currency_converter": "^1.0.0",
+    "inquirer": "^9.2.17"
+  }
+}
