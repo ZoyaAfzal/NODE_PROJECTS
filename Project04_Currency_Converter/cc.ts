@@ -2,6 +2,8 @@
 
 import inquirer from "inquirer";
 import chalk from "chalk";
+console.log(chalk.magentaBright.bold("\n \t Welcome to Currency-Converter \t \n"));
+
 
 const Currencies:any={
     USD:1, //Base Currency
@@ -26,7 +28,7 @@ const Currencies:any={
     MAD:10.06
 
 };
-
+async function startFunc(){
 let userAnswer = await inquirer.prompt(
     [
         {
@@ -61,3 +63,19 @@ let baseAmount = Amount / fromAmount;         //Base Currency
 let convertedAmount = chalk.greenBright(Math.round(baseAmount * toAmount));
 console.log(chalk.magentaBright(`Converted Amount: ${convertedAmount}`));
 console.log(chalk.redBright(`From ${userAnswer.from} To ${userAnswer.to} : ${Amount} = ${convertedAmount}`));
+};
+    
+async function startAgain(){
+    do{
+        await startFunc();
+        var again = await inquirer.prompt({
+            type: "input",
+            name: "restart",
+            message: chalk.greenBright.bold("Do you want to Continue? Press Y or N :")
+        })
+
+        
+    } while(again.restart == "y" || again.restart == "Y" || again.restart == "yes" || again.restart == "YES");
+    
+};
+startAgain();

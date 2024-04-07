@@ -1,6 +1,6 @@
 {
   "name": "@zoyaafzal/project04_currency_converter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -19,7 +19,7 @@
     "@types/node": "^20.12.5"
   },
   "dependencies": {
-    "@zoyaafzal/project04_currency_converter": "^1.0.0",
+    "@zoyaafzal/project04_currency_converter": "^1.1.0",
     "inquirer": "^9.2.17"
   }
 }

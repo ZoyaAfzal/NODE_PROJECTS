@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
+console.log(chalk.magentaBright.bold("\n \t Welcome to Currency-Converter \t \n"));
 const Currencies = {
     USD: 1, //Base Currency
     EUR: 0.92,
@@ -23,31 +24,46 @@ const Currencies = {
     EGP: 47.39,
     MAD: 10.06
 };
-let userAnswer = await inquirer.prompt([
-    {
-        name: "from",
-        type: "list",
-        message: chalk.blueBright("Enter From Currency:"),
-        choices: ["USD", "EUR", "CAD", "AUD", "PKR", "AED", "QAR", "OMR", "KWD", "INR", "JPY", "CNY", "TRY", "GBP", "MXN",
-            "HKD", "SLR", "BDT", "EGP", "MAD"]
-    },
-    {
-        name: "to",
-        type: "list",
-        message: chalk.blueBright("Enter To Currency:"),
-        choices: ["USD", "EUR", "CAD", "AUD", "PKR", "AED", "QAR", "OMR", "KWD", "INR", "JPY", "CNY", "TRY", "GBP", "MXN",
-            "HKD", "SLR", "BDT", "EGP", "MAD"]
-    },
-    {
-        name: "amount",
-        type: "number",
-        message: chalk.blueBright("Enter your Amount you want to Convert:")
-    }
-]);
-let fromAmount = Currencies[userAnswer.from]; //Exchange Rates
-let toAmount = Currencies[userAnswer.to]; //Exchange Rates
-let Amount = userAnswer.amount;
-let baseAmount = Amount / fromAmount; //Base Currency
-let convertedAmount = chalk.greenBright(Math.round(baseAmount * toAmount));
-console.log(chalk.magentaBright(`Converted Amount: ${convertedAmount}`));
-console.log(chalk.redBright(`From ${userAnswer.from} To ${userAnswer.to} : ${Amount} = ${convertedAmount}`));
+async function startFunc() {
+    let userAnswer = await inquirer.prompt([
+        {
+            name: "from",
+            type: "list",
+            message: chalk.blueBright("Enter From Currency:"),
+            choices: ["USD", "EUR", "CAD", "AUD", "PKR", "AED", "QAR", "OMR", "KWD", "INR", "JPY", "CNY", "TRY", "GBP", "MXN",
+                "HKD", "SLR", "BDT", "EGP", "MAD"]
+        },
+        {
+            name: "to",
+            type: "list",
+            message: chalk.blueBright("Enter To Currency:"),
+            choices: ["USD", "EUR", "CAD", "AUD", "PKR", "AED", "QAR", "OMR", "KWD", "INR", "JPY", "CNY", "TRY", "GBP", "MXN",
+                "HKD", "SLR", "BDT", "EGP", "MAD"]
+        },
+        {
+            name: "amount",
+            type: "number",
+            message: chalk.blueBright("Enter your Amount you want to Convert:")
+        }
+    ]);
+    let fromAmount = Currencies[userAnswer.from]; //Exchange Rates
+    let toAmount = Currencies[userAnswer.to]; //Exchange Rates
+    let Amount = userAnswer.amount;
+    let baseAmount = Amount / fromAmount; //Base Currency
+    let convertedAmount = chalk.greenBright(Math.round(baseAmount * toAmount));
+    console.log(chalk.magentaBright(`Converted Amount: ${convertedAmount}`));
+    console.log(chalk.redBright(`From ${userAnswer.from} To ${userAnswer.to} : ${Amount} = ${convertedAmount}`));
+}
+;
+async function startAgain() {
+    do {
+        await startFunc();
+        var again = await inquirer.prompt({
+            type: "input",
+            name: "restart",
+            message: chalk.greenBright.bold("Do you want to Continue? Press Y or N :")
+        });
+    } while (again.restart == "y" || again.restart == "Y" || again.restart == "yes" || again.restart == "YES");
+}
+;
+startAgain();
