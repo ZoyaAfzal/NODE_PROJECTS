@@ -1,0 +1,27 @@
+{
+  "name": "@zoyaafzal/project08_quiz_app",
+  "version": "1.0.0",
+  "description": "This quiz system will allow user multiple choice questions and prompt the user to reply",
+  "main": "quiz.js",
+  "type": "module",
+  "bin": "quiz.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.12.10"
+  },
+  "dependencies": {
+    "@zoyaafzal/project-calc": "^1.1.0",
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.20"
+  }
+}
